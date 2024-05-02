@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:interval_timer_app_v2/features/screens/home_screen/top_bar/top_bar.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class TimerCreationScreen extends StatefulWidget {
+  const TimerCreationScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TimerCreationScreen> createState() => _TimerCreationScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TimerCreationScreenState extends State<TimerCreationScreen> {
   @override
   void initState() {
     SystemChrome.setPreferredOrientations([
@@ -19,8 +20,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [],
+    return Scaffold(
+      body: Column(
+        children: [
+          const SizedBox(
+            height: kToolbarHeight,
+            child: TopBar(),
+          ),
+          Flexible(
+            child: Container(
+              color: Colors.redAccent,
+              child: const CustomScrollView(
+                slivers: [
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

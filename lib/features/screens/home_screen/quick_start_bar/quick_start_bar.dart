@@ -34,11 +34,11 @@ class _QuickStartBarState extends State<QuickStartBar>
     return SliverToBoxAdapter(
       child: Container(
         color: Colors.green,
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(medium.padding),
-              child: InkWell(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: medium.padding).copyWith(top: medium.padding),
+          child: Column(
+            children: [
+              InkWell(
                 onTap: () {
                   setState(() {
                     isOpen = !isOpen;
@@ -50,7 +50,8 @@ class _QuickStartBarState extends State<QuickStartBar>
                   });
                 },
                 child: Container(
-                  color: Colors.amberAccent,
+                  color: Colors.pinkAccent,
+                  height: kToolbarHeight,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -66,28 +67,39 @@ class _QuickStartBarState extends State<QuickStartBar>
                   ),
                 ),
               ),
-            ),
-            AnimatedContainer(
-              color: Colors.amberAccent,
-              height: isOpen ? 400 : 0,
-              duration: Duration(milliseconds: duration),
-              curve: Curves.linear,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Text('Set'),
-                    //
-                    Text('Work'),
-                    //
-                    Text('Rest'),
-                    //
-                    // total & save
-                    // start
-                  ],
+              AnimatedContainer(
+                padding: EdgeInsets.only(bottom: medium.padding),
+                color: Colors.amberAccent,
+                height: isOpen ? 400 : 0,
+                duration: Duration(milliseconds: duration),
+                curve: Curves.linear,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: medium.padding),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Quick start'),
+                            Text('Quick start'),
+                          ],
+                        ),
+                        Text('Set'),
+                        //
+                        Text('Work'),
+                        //
+                        Text('Rest'),
+                        //
+                        // total & save
+                        // start
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
