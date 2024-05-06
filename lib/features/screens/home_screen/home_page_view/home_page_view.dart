@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:interval_timer_app_v2/features/screens/home_screen/quick_start_bar/index.dart';
-import 'package:interval_timer_app_v2/features/screens/home_screen/timers_list/timers_list.dart';
-import 'package:interval_timer_app_v2/theme/sizes.dart';
+
+import '../home_page/home_page.dart';
+import '../timer_creation_screen/timer_creation_screen.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -15,12 +15,14 @@ class _PageViewExampleState extends State<HomePageView>
   late PageController _pageViewController;
   late TabController _tabController;
   int _currentPageIndex = 0;
+  late bool _simpleView;
 
   @override
   void initState() {
     super.initState();
     _pageViewController = PageController(initialPage: _currentPageIndex);
     _tabController = TabController(length: 2, vsync: this);
+    _simpleView = true;
   }
 
   @override
@@ -37,114 +39,9 @@ class _PageViewExampleState extends State<HomePageView>
         PageView(
           controller: _pageViewController,
           onPageChanged: _handlePageViewChanged,
-          children: <Widget>[
-            Container(
-              color: Colors.redAccent,
-              child: CustomScrollView(
-                slivers: [
-                  const QuickStartBar(),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.all(medium.padding),
-                      child: Container(
-                        color: Colors.amberAccent,
-                        height: kToolbarHeight,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text('Presets'),
-                              InkWell(
-                                child: Container(
-                                  height: 35,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(
-                                      25,
-                                    ),
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 5,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          'Add custom',
-                                        ),
-                                        SizedBox(
-                                          width: 2,
-                                        ),
-                                        Icon(
-                                          Icons.alarm_add,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
-                  ),
-                  const TimersList(),
-                ],
-              ),
-            ),
-            CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.all(medium.padding),
-                    child: Container(
-                      color: Colors.amberAccent,
-                      height: kToolbarHeight,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('Presets'),
-                            InkWell(
-                              child: Container(
-                                height: 35,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(
-                                    25,
-                                  ),
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 5,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text(
-                                        'Add custom',
-                                      ),
-                                      SizedBox(
-                                        width: 2,
-                                      ),
-                                      Icon(
-                                        Icons.alarm_add,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ]),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          children: const <Widget>[
+            HomePage(),
+            TimerCreationScreen(),
           ],
         ),
       ],

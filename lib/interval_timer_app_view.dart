@@ -2,7 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'features/app_page_view/app_page_view.dart';
+import 'features/screens/app_page_view/app_page_view.dart';
 import 'generated/l10n.dart';
 import 'theme/theme.dart';
 
