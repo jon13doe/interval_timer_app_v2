@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:interval_timer_app_v2/theme/sizes.dart';
 
 import '../home_page/home_page.dart';
-import '../timer_creation_screen/timer_creation_screen.dart';
+import '../timer_creation_page/timer_creation_page.dart';
 
-class HomePageView extends StatefulWidget {
-  const HomePageView({super.key});
+class HomeScreenPageView extends StatefulWidget {
+  const HomeScreenPageView({super.key});
 
   @override
-  State<HomePageView> createState() => _PageViewExampleState();
+  State<HomeScreenPageView> createState() => _PageViewExampleState();
 }
 
-class _PageViewExampleState extends State<HomePageView>
+class _PageViewExampleState extends State<HomeScreenPageView>
     with TickerProviderStateMixin {
   late PageController _pageViewController;
   late TabController _tabController;
   int _currentPageIndex = 0;
-  late bool _simpleView;
 
   @override
   void initState() {
     super.initState();
     _pageViewController = PageController(initialPage: _currentPageIndex);
     _tabController = TabController(length: 2, vsync: this);
-    _simpleView = true;
   }
 
   @override
@@ -34,17 +33,16 @@ class _PageViewExampleState extends State<HomePageView>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        PageView(
-          controller: _pageViewController,
-          onPageChanged: _handlePageViewChanged,
-          children: const <Widget>[
-            HomePage(),
-            TimerCreationScreen(),
-          ],
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.all(medium.padding),
+      child: PageView(
+        controller: _pageViewController,
+        onPageChanged: _handlePageViewChanged,
+        children: const <Widget>[
+          HomePage(),
+          TimerCreationPage(),
+        ],
+      ),
     );
   }
 

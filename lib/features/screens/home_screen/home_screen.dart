@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:interval_timer_app_v2/features/screens/home_screen/home_page_view/Home_page_view.dart';
 
+import 'home_screen_page_view/home_screen_page_view.dart';
 import 'top_bar/index.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,15 +22,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
-          SizedBox(
+          Container(
+            color: Colors.amber,
             height: kToolbarHeight,
             child: TopBar(),
           ),
           Flexible(
-            child: HomePageView(),
+            child: HomeScreenPageView(),
           ),
         ],
       ),

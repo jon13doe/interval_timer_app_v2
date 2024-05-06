@@ -31,16 +31,12 @@ class _PageViewExampleState extends State<AppPageView>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        PageView(
-          controller: _pageViewController,
-          onPageChanged: _handlePageViewChanged,
-          children: const <Widget>[
-            MenuScreen(),
-            HomeScreen(),
-          ],
-        ),
+    return PageView(
+      controller: _pageViewController,
+      onPageChanged: _handlePageViewChanged,
+      children: const <Widget>[
+        MenuScreen(),
+        HomeScreen(),
       ],
     );
   }
