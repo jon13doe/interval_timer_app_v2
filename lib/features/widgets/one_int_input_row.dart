@@ -56,33 +56,34 @@ class _OneIntInputRowState extends State<OneIntInputRow> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          IconButton(
-            onPressed: _decrementValue,
-            icon: const Icon(Icons.remove),
-          ),
-          InputField(
-            type: 'num',
-            initValue: _currentValue,
-            maxValue: widget.maxValue,
-            fontSize: widget.numSize,
-            onInput: (newValue) {
-              setState(() {
-                _currentValue = newValue;
-                widget.onChange(_currentValue);
-              });
-            },
-          ),
-          IconButton(
-            onPressed: _incrementValue,
-            icon: const Icon(Icons.add),
-          ),
-        ],
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        width: widget.width,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: _decrementValue,
+              icon: const Icon(Icons.remove),
+            ),
+            InputField(
+              type: 'num',
+              initValue: _currentValue,
+              maxValue: widget.maxValue,
+              fontSize: widget.numSize,
+              onInput: (newValue) {
+                setState(() {
+                  _currentValue = newValue;
+                  widget.onChange(_currentValue);
+                });
+              },
+            ),
+            IconButton(
+              onPressed: _incrementValue,
+              icon: const Icon(Icons.add),
+            ),
+          ],
+        ),
       ),
     );
   }

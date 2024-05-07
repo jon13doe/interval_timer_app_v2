@@ -14,7 +14,7 @@ class _TimersListState extends State<TimersList> {
     return SliverList(
         delegate: SliverChildBuilderDelegate(childCount: 5, (context, index) {
       return Padding(
-        padding: EdgeInsets.only(bottom: index < 4 ? medium.padding : 0),
+        padding: EdgeInsets.only(top: index < 5 ? medium.padding : 0),
         child: InkWell(
           onTap: () {},
           child: Stack(

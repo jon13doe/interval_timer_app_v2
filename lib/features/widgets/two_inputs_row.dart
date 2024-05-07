@@ -69,69 +69,70 @@ class _CustomTwoNumsRowState extends State<TwoInputsRow> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          IconButton(
-            onPressed: _decrementValue,
-            icon: const Icon(Icons.remove),
-          ),
-          Row(
-            children: [
-              InputField(
-                type: 'num',
-                initValue: _currentValueFirstBox,
-                maxValue: widget.maxValueFirst,
-                fontSize: widget.numSize,
-                descriptionText: 'min',
-                onInput: (newValue) {
-                  setState(() {
-                    _currentValue -= _currentValueFirstBox * 60;
-                    _currentValue += newValue * 60;
-                    _currentValueFirstBox = newValue;
-                    widget.onChange(_currentValue);
-                  });
-                },
-              ),
-              Container(
-                color: Colors.amber,
-                child: Center(
-                  child: Text(
-                    ':',
-                    style: TextStyle(fontSize: widget.numSize),
+    return SliverToBoxAdapter(
+      child: Container(
+        color: Colors.amberAccent,
+        width: widget.width,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: _decrementValue,
+              icon: const Icon(Icons.remove),
+            ),
+            Row(
+              children: [
+                InputField(
+                  type: 'num',
+                  initValue: _currentValueFirstBox,
+                  maxValue: widget.maxValueFirst,
+                  fontSize: widget.numSize,
+                  descriptionText: 'min',
+                  onInput: (newValue) {
+                    setState(() {
+                      _currentValue -= _currentValueFirstBox * 60;
+                      _currentValue += newValue * 60;
+                      _currentValueFirstBox = newValue;
+                      widget.onChange(_currentValue);
+                    });
+                  },
+                ),
+                Container(
+                  color: Colors.amber,
+                  child: Center(
+                    child: Text(
+                      ':',
+                      style: TextStyle(fontSize: widget.numSize),
+                    ),
                   ),
                 ),
-              ),
-              InputField(
-                type: 'num',
-                initValue: _currentValueSecondBox,
-                maxValue: widget.maxValueSecond.toInt(),
-                fontSize: widget.numSize,
-                descriptionText: 'sec',
-                onInput: (newValue) {
-                  setState(() {
-                    _currentValue -= _currentValueSecondBox;
-                    _currentValue += newValue;
-                    if (_currentValue > _maxValue) {
-                      _currentValue -= _maxValue;
-                    }
-                    _currentValueFirstBox = _currentValue ~/ 60;
-                    _currentValueSecondBox = _currentValue % 60;
-
-                    widget.onChange(_currentValue);
-                  });
-                },
-              ),
-            ],
-          ),
-          IconButton(
-            onPressed: _incrementValue,
-            icon: const Icon(Icons.add),
-          ),
-        ],
+                InputField(
+                  type: 'num',
+                  initValue: _currentValueSecondBox,
+                  maxValue: widget.maxValueSecond.toInt(),
+                  fontSize: widget.numSize,
+                  descriptionText: 'sec',
+                  onInput: (newValue) {
+                    setState(() {
+                      _currentValue -= _currentValueSecondBox;
+                      _currentValue += newValue;
+                      if (_currentValue > _maxValue) {
+                        _currentValue -= _maxValue;
+                      }
+                      _currentValueFirstBox = _currentValue ~/ 60;
+                      _currentValueSecondBox = _currentValue % 60;
+                      widget.onChange(_currentValue);
+                    });
+                  },
+                ),
+              ],
+            ),
+            IconButton(
+              onPressed: _incrementValue,
+              icon: const Icon(Icons.add),
+            ),
+          ],
+        ),
       ),
     );
   }

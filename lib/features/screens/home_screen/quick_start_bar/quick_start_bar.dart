@@ -53,7 +53,7 @@ class _QuickStartBarState extends State<QuickStartBar>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Quick start'),
+                    const Text('Quick start'),
                     RotationTransition(
                       turns: Tween(begin: 1.0, end: 0.5)
                           .animate(_rotationController),
@@ -66,7 +66,6 @@ class _QuickStartBarState extends State<QuickStartBar>
               ),
             ),
             AnimatedContainer(
-              padding: EdgeInsets.only(bottom: medium.padding),
               color: Colors.amberAccent,
               height: isOpen ? 400 : 0,
               duration: Duration(milliseconds: duration),
@@ -74,7 +73,7 @@ class _QuickStartBarState extends State<QuickStartBar>
               child: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.only(top: medium.padding),
-                  child: Column(
+                  child: const Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

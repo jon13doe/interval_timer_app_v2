@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interval_timer_app_v2/features/widgets/one_int_input_row.dart';
 import 'package:interval_timer_app_v2/features/widgets/preset_name_bar.dart';
+import 'package:interval_timer_app_v2/features/widgets/sliver_text.dart';
 import 'package:interval_timer_app_v2/features/widgets/two_inputs_row.dart';
 import 'package:interval_timer_app_v2/theme/sizes.dart';
 
@@ -17,74 +18,96 @@ class _SimpleTimerCreationState extends State<SimpleTimerCreation> {
     double height = 0.75 * kToolbarHeight;
     double inputFormWidth = 0.55 * MediaQuery.of(context).size.width;
 
-    return Column(
+    return Stack(
+      alignment: Alignment.topCenter,
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: medium.padding),
-          child: Container(
-            height: 0.75 * kToolbarHeight,
-            color: Colors.amberAccent,
-            child: const PresetNameBar(),
-          ),
-        ),
-        const Text('Prepare'),
-        TwoInputsRow(
-          initValue: 90,
-          maxValueFirst: 99,
-          maxValueSecond: 60,
-          numSize: height,
-          zeroExist: true,
-          onChange: (newValue) {},
-          width: inputFormWidth,
-        ),
-        const Text('Sets'),
-        OneIntInputRow(
-          initValue: 5,
-          maxValue: 99,
-          numSize: height,
-          zeroExist: false,
-          onChange: (newValue) {},
-          width: inputFormWidth,
-        ),
-        const Text('Work'),
-        TwoInputsRow(
-          initValue: 90,
-          maxValueFirst: 99,
-          maxValueSecond: 60,
-          numSize: height,
-          zeroExist: true,
-          onChange: (newValue) {},
-          width: inputFormWidth,
-        ),
-        const Text('Rest'),
-        TwoInputsRow(
-          initValue: 90,
-          maxValueFirst: 99,
-          maxValueSecond: 60,
-          numSize: height,
-          zeroExist: true,
-          onChange: (newValue) {},
-          width: inputFormWidth,
-        ),
-        const Text('Cooldown'),
-        TwoInputsRow(
-          initValue: 90,
-          maxValueFirst: 99,
-          maxValueSecond: 60,
-          numSize: height,
-          zeroExist: true,
-          onChange: (newValue) {},
-          width: inputFormWidth,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(right: medium.padding),
-              child: const Text('Total: '),
+        CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: medium.padding),
+                child: Container(
+                  height: 0.75 * kToolbarHeight,
+                  color: Colors.amberAccent,
+                  child: const PresetNameBar(),
+                ),
+              ),
+            ),
+            const SliverText(text: 'Prepare'),
+            TwoInputsRow(
+              initValue: 90,
+              maxValueFirst: 99,
+              maxValueSecond: 60,
+              numSize: height,
+              zeroExist: true,
+              onChange: (newValue) {},
+              width: inputFormWidth,
+            ),
+            const SliverText(text: 'Set'),
+            OneIntInputRow(
+              initValue: 5,
+              maxValue: 99,
+              numSize: height,
+              zeroExist: false,
+              onChange: (newValue) {},
+              width: inputFormWidth,
+            ),
+            const SliverText(text: 'Work'),
+            TwoInputsRow(
+              initValue: 90,
+              maxValueFirst: 99,
+              maxValueSecond: 60,
+              numSize: height,
+              zeroExist: true,
+              onChange: (newValue) {},
+              width: inputFormWidth,
+            ),
+            const SliverText(text: 'Rest'),
+            TwoInputsRow(
+              initValue: 90,
+              maxValueFirst: 99,
+              maxValueSecond: 60,
+              numSize: height,
+              zeroExist: true,
+              onChange: (newValue) {},
+              width: inputFormWidth,
+            ),
+            const SliverText(text: 'Cooldown'),
+            TwoInputsRow(
+              initValue: 90,
+              maxValueFirst: 99,
+              maxValueSecond: 60,
+              numSize: height,
+              zeroExist: true,
+              onChange: (newValue) {},
+              width: inputFormWidth,
+            ),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Container(
+                    height: 0.5 * kToolbarHeight + medium.padding
+                  ),
+                ],
+              ),
             ),
           ],
         ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            color: Colors.amberAccent,
+            height: 0.5 * kToolbarHeight,
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('Total: '),
+              ],
+            ),
+          ),
+        )
       ],
     );
   }
