@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'quick_start_bar/index.dart';
-import 'timers_list/index.dart';
+import '../quick_start_bar/index.dart';
+import '../timers_list/index.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

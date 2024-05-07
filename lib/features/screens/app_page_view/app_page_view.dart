@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interval_timer_app_v2/features/screens/home_screen/home_screen.dart';
 import 'package:interval_timer_app_v2/features/screens/menu_screen/menu_screen.dart';
+import 'package:interval_timer_app_v2/features/screens/timer_creation_screen/timer_creation_screen.dart';
 
 class AppPageView extends StatefulWidget {
   const AppPageView({super.key});
@@ -19,7 +20,7 @@ class _PageViewExampleState extends State<AppPageView>
   void initState() {
     super.initState();
     _pageViewController = PageController(initialPage: _currentPageIndex);
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -37,6 +38,7 @@ class _PageViewExampleState extends State<AppPageView>
       children: const <Widget>[
         MenuScreen(),
         HomeScreen(),
+        TimerCreationScreen(),
       ],
     );
   }
