@@ -12,20 +12,18 @@ class PresetNameBar extends StatefulWidget {
 class _PresetNameBarState extends State<PresetNameBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextField(
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.edit,
-          ),
-          hintText: 'Enter preset name',
-          border: OutlineInputBorder(),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(),
-          ),
+    return const TextField(
+      decoration: InputDecoration(
+        prefixIcon: Icon(
+          Icons.edit,
+        ),
+        hintText: 'Enter preset name',
+        border: OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(),
         ),
       ),
     );

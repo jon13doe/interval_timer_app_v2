@@ -21,79 +21,79 @@ class _SimpleTimerCreationState extends State<SimpleTimerCreation> {
     return Stack(
       alignment: Alignment.topCenter,
       children: [
-        CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: medium.padding),
+        Padding(
+          padding: EdgeInsets.all(medium.padding),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
                 child: Container(
                   height: 0.75 * kToolbarHeight,
                   color: Colors.amberAccent,
                   child: const PresetNameBar(),
                 ),
               ),
-            ),
-            const SliverText(text: 'Prepare'),
-            TwoInputsRow(
-              initValue: 90,
-              maxValueFirst: 99,
-              maxValueSecond: 60,
-              numSize: height,
-              zeroExist: true,
-              onChange: (newValue) {},
-              width: inputFormWidth,
-            ),
-            const SliverText(text: 'Set'),
-            OneIntInputRow(
-              initValue: 5,
-              maxValue: 99,
-              numSize: height,
-              zeroExist: false,
-              onChange: (newValue) {},
-              width: inputFormWidth,
-            ),
-            const SliverText(text: 'Work'),
-            TwoInputsRow(
-              initValue: 90,
-              maxValueFirst: 99,
-              maxValueSecond: 60,
-              numSize: height,
-              zeroExist: true,
-              onChange: (newValue) {},
-              width: inputFormWidth,
-            ),
-            const SliverText(text: 'Rest'),
-            TwoInputsRow(
-              initValue: 90,
-              maxValueFirst: 99,
-              maxValueSecond: 60,
-              numSize: height,
-              zeroExist: true,
-              onChange: (newValue) {},
-              width: inputFormWidth,
-            ),
-            const SliverText(text: 'Cooldown'),
-            TwoInputsRow(
-              initValue: 90,
-              maxValueFirst: 99,
-              maxValueSecond: 60,
-              numSize: height,
-              zeroExist: true,
-              onChange: (newValue) {},
-              width: inputFormWidth,
-            ),
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Container(
-                    height: 0.5 * kToolbarHeight + medium.padding
-                  ),
-                ],
+              const SliverText(text: 'Prepare'),
+              TwoInputsRow(
+                initValue: 90,
+                maxValueFirst: 99,
+                maxValueSecond: 60,
+                numSize: height,
+                zeroExist: true,
+                onChange: (newValue) {},
+                width: inputFormWidth,
               ),
-            ),
-          ],
+              const SliverText(text: 'Set'),
+              OneIntInputRow(
+                initValue: 5,
+                maxValue: 99,
+                numSize: height,
+                zeroExist: false,
+                onChange: (newValue) {},
+                width: inputFormWidth,
+              ),
+              const SliverText(text: 'Work'),
+              TwoInputsRow(
+                initValue: 90,
+                maxValueFirst: 99,
+                maxValueSecond: 60,
+                numSize: height,
+                zeroExist: true,
+                onChange: (newValue) {},
+                width: inputFormWidth,
+              ),
+              const SliverText(text: 'Rest'),
+              TwoInputsRow(
+                initValue: 90,
+                maxValueFirst: 99,
+                maxValueSecond: 60,
+                numSize: height,
+                zeroExist: true,
+                onChange: (newValue) {},
+                width: inputFormWidth,
+              ),
+              const SliverText(text: 'Cooldown'),
+              TwoInputsRow(
+                initValue: 90,
+                maxValueFirst: 99,
+                maxValueSecond: 60,
+                numSize: height,
+                zeroExist: true,
+                onChange: (newValue) {},
+                width: inputFormWidth,
+              ),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    Container(
+                      height: 0.5 * kToolbarHeight
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
         Align(
           alignment: Alignment.bottomCenter,

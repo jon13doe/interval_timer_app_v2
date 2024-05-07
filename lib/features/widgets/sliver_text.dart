@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interval_timer_app_v2/theme/sizes.dart';
 
 class SliverText extends StatelessWidget {
   final String text;
@@ -9,8 +10,14 @@ class SliverText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Center(
-        child: Text(text),
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: medium.padding),
+        child: Container(
+          color: Colors.amber,
+          child: Center(
+            child: Text(text),
+          ),
+        ),
       ),
     );
   }
