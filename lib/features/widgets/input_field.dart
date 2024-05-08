@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class InputField extends StatefulWidget {
-  final String? type;
+  final bool? numImput;
   final dynamic initValue;
   final num? maxValue;
   final double fontSize;
@@ -12,7 +12,7 @@ class InputField extends StatefulWidget {
 
   const InputField(
       {super.key,
-      this.type,
+      this.numImput,
       required this.initValue,
       this.maxValue,
       required this.fontSize,
@@ -29,52 +29,64 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.amber,
-      width: widget.type == 'string'
+      width: widget.numImput == false
           ? 0.5 * MediaQuery.of(context).size.width
           : 1.25 * widget.fontSize,
       height: 1.2 * widget.fontSize,
+      decoration: BoxDecoration(
+        color: Colors.amber,
+        borderRadius: BorderRadius.circular(5),
+      ),
       child: Stack(
         children: [
           Align(
-            alignment: Alignment.bottomLeft,
-            child: TextField(
-              keyboardType: widget.type == 'string'
-                  ? TextInputType.text
-                  : TextInputType.number,
-              maxLength: widget.type == 'string'
-                  ? 10
-                  : widget.maxValue.toString().length,
-              controller: TextEditingController(
-                text: widget.type == 'string'
-                    ? widget.initValue
-                    : widget.initValue.toString().padLeft(2, '0'),
+            alignment: Alignment.topCenter,
+            child: Container(
+              color: Colors.white,
+              child: TextField(
+                keyboardType: widget.numImput == false
+                    ? TextInputType.text
+                    : TextInputType.number,
+                maxLength: widget.numImput == false
+                    ? 10
+                    : widget.maxValue.toString().length,
+                controller: TextEditingController(
+                  text: widget.numImput == false
+                      ? widget.initValue
+                      : widget.initValue.toString().padLeft(2, '0'),
+                ),
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  height: 1,
+                  fontSize: widget.fontSize,
+                  fontWeight: widget.numImput == false
+                      ? FontWeight.w600
+                      : FontWeight.w500,
+                ),
+                cursorHeight: 0.8 * widget.fontSize,
+                cursorColor: Theme.of(context).colorScheme.secondary,
+                enableInteractiveSelection: false,
+                decoration: const InputDecoration(
+                    counterText: '',
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent))),
+                inputFormatters: widget.numImput == false
+                    ? [
+                        FilteringTextInputFormatter.allow(
+                            RegExp(r'[a-zA-Z0-9а-яА-Я]'))
+                      ]
+                    : [FilteringTextInputFormatter.digitsOnly],
+                textInputAction: TextInputAction.done,
+                onSubmitted: (text) {
+                  setState(() {
+                    _inputValue =
+                        widget.numImput == false ? text : num.parse(text);
+                    widget.onInput(_inputValue);
+                  });
+                },
               ),
-              textAlign: TextAlign.start,
-              textAlignVertical: TextAlignVertical.top,
-              style: TextStyle(
-                fontSize: widget.fontSize,
-                fontWeight: widget.type == 'string'
-                    ? FontWeight.w600
-                    : FontWeight.w500,
-              ),
-              cursorColor: Theme.of(context).colorScheme.background,
-              decoration: const InputDecoration(
-                  counterText: '',
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)),
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent))),
-              inputFormatters: widget.type == 'string'
-                  ? [FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9а-яА-Я]'))]
-                  : [FilteringTextInputFormatter.digitsOnly],
-              textInputAction: TextInputAction.done,
-              onSubmitted: (text) {
-                setState(() {
-                  _inputValue = widget.type == 'string' ? text : num.parse(text);
-                  widget.onInput(_inputValue);
-                });
-              },
             ),
           ),
           if (widget.descriptionText != null)
